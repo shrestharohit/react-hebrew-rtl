@@ -1,8 +1,8 @@
-const isHebrew = (string) => {
+export const isHebrew = (string) => {
   return !!string?.split("").some((x) => x.match(/[\u0590-\u05FF]/));
 };
 
-const convertToRTL = (str) => {
+export const convertToRTL = (str) => {
   // Split the string into an array of characters
   const chars = str.split("");
 
