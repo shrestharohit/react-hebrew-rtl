@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const OuterContainer = styled.div``;
 
 export const TitleBar = styled.div`
-  background-color: red;
+  background-color: goldenrod;
   font-size: 30px;
   text-align: center;
   padding: 1rem;
@@ -57,5 +57,19 @@ export const CustomButton = styled.button`
 
   &:hover {
     opacity: 0.9;
+    scale: 1.2;
   }
+`;
+
+export const OutputContainer = styled.div`
+  font-size: 30px;
+  background-color: antiquewhite;
+  width: 100%;
+  border-radius: 1rem;
+  min-height: 80px;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;

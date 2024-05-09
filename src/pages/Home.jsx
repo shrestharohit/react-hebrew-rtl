@@ -8,22 +8,28 @@ import {
   Title,
   TitleBar,
   CustomButton,
+  OutputContainer,
 } from "../styles/home.styled";
 
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
+  const [outputValue, setOutputValue] = useState("");
 
   const handleReset = () => {
     setInputValue("");
+    setOutputValue("");
   };
 
   const handleConvert = () => {
+    if (!inputValue) return;
     const hebrew = isHebrew(inputValue);
+    let value;
     if (hebrew) {
-      console.log(convertToRTL(inputValue));
+      value = convertToRTL(inputValue);
     } else {
-      console.log(inputValue.split(""));
+      value = inputValue.split("");
     }
+    setOutputValue(value);
   };
 
   return (
@@ -40,18 +46,22 @@ const Home = () => {
               placeholder="Enter Text Here"
               onChange={(e) => setInputValue(e.target.value)}
             />
-            <CustomButton color="red" onClick={handleConvert}>
-              Convert to RTL
-            </CustomButton>
-            <CustomButton color="red" onClick={handleReset}>
-              Reset
-            </CustomButton>
-            <div id="output-value" className="output-value">
-              Your result
-            </div>
-            <div>
-              Is Hebrew? <span id="is-hebrew">N/A</span>
-            </div>
+            {!outputValue ? (
+              <CustomButton color="green" onClick={handleConvert}>
+                Convert to RTL
+              </CustomButton>
+            ) : (
+              <CustomButton color="red" onClick={handleReset}>
+                Clear
+              </CustomButton>
+            )}
+            {outputValue && (
+              <OutputContainer>
+                {outputValue.map((char) => (
+                  <div>{char}</div>
+                ))}
+              </OutputContainer>
+            )}
           </InnerContainer>
         </ContentSection>
       </OuterContainer>
