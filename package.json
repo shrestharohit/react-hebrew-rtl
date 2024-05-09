@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "yarn generate-meta-tag && vite build"
+    "build": "vite build"
   },
   "dependencies": {
     "react": "^18.3.1",
