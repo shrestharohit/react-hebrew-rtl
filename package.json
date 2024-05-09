@@ -1,0 +1,23 @@
+{
+  "name": "react-hebrew-rtl",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "yarn": ">= 1.19.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "yarn generate-meta-tag && vite build"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.0",
+    "styled-components": "^6.1.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.11"
+  }
+}
