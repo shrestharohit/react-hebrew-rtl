@@ -46,7 +46,7 @@ function convertToRTL(str) {
   }
 
   return {
-    text: isHebrew ? result.split("") : result.split("").reverse(),
+    text: isHebrew ? result.split("") : str.split(""),
     isHebrew,
   };
 }
