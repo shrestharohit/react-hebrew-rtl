@@ -46,19 +46,18 @@ const Home = () => {
               placeholder="Enter Text Here"
               onChange={(e) => setInputValue(e.target.value)}
             />
-            {!outputValue ? (
-              <CustomButton color="green" onClick={handleConvert}>
-                Convert to RTL
-              </CustomButton>
-            ) : (
+            <CustomButton color="green" onClick={handleConvert}>
+              Convert to RTL
+            </CustomButton>
+            {outputValue && (
               <CustomButton color="red" onClick={handleReset}>
                 Clear
               </CustomButton>
             )}
             {outputValue && (
               <OutputContainer>
-                {outputValue.map((char) => (
-                  <div>{char}</div>
+                {outputValue.map((char, index) => (
+                  <div key={index}>{char !== ' ' ? char : '\u00A0'}</div>
                 ))}
               </OutputContainer>
             )}

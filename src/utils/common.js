@@ -5,14 +5,16 @@ export const isHebrew = (string) => {
 export const convertToRTL = (str) => {
   // Split the string into an array of characters
   const chars = str.split("");
+  const specialCharacters = [":", ","];
 
   // Find groups of consecutive numbers and reverse them
   let result = "";
   let numberBuffer = "";
   for (let i = 0; i < chars.length; i++) {
     const char = chars[i];
-    if (!isNaN(char) && char !== " ") {
-      // Check if the character is a number
+
+    if ((!isNaN(char) && char !== " ") || specialCharacters.includes(char)) {
+      // Check if the character is a number and not space or a special character
       numberBuffer += char;
     } else {
       if (numberBuffer) {
