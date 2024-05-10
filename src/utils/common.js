@@ -5,7 +5,7 @@ export const isHebrew = (string) => {
 export const convertToRTL = (str) => {
   // Split the string into an array of characters
   const chars = str.split("");
-  const specialCharacters = [":", ","];
+  const specialCharacters = [":", ",", "."];
 
   // Find groups of consecutive numbers and reverse them
   let result = "";
