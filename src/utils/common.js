@@ -6,29 +6,50 @@ export const convertToRTL = (str) => {
   // Split the string into an array of characters
   const chars = str.split("");
   const specialCharacters = [":", ",", "."];
+  const englishLetters = /[a-zA-Z]/;
 
-  // Find groups of consecutive numbers and reverse them
+  // Mapping for characters that need to be swapped
+  const swapMap = {
+    "(": ")",
+    ")": "(",
+    "<": ">",
+    ">": "<",
+    "{": "}",
+    "}": "{",
+    "[": "]",
+    "]": "[",
+    "/": "\\", //Note: In JavaScript, a backslash (\) is an escape character. To represent an actual backslash in a string, you need to escape it with another backslash.
+    "\\": "/",
+  };
+
+  // Initialize buffers and result
   let result = "";
-  let numberBuffer = "";
+  let buffer = "";
+
   for (let i = 0; i < chars.length; i++) {
     const char = chars[i];
 
-    if ((!isNaN(char) && char !== " ") || specialCharacters.includes(char)) {
-      // Check if the character is a number and not space or a special character
-      numberBuffer += char;
+    if (
+      (!isNaN(char) && char !== " ") ||
+      specialCharacters.includes(char) ||
+      englishLetters.test(char)
+    ) {
+      // Add numbers, special characters, or English letters to the buffer
+      buffer += char;
     } else {
-      if (numberBuffer) {
-        // Reverse and add the number to the result
-        result = numberBuffer + result;
-        numberBuffer = "";
+      if (buffer) {
+        // Reverse and add the buffer to the result
+        result = buffer + result;
+        buffer = "";
       }
-      result = char + result;
+      // Swap character if it's in the swapMap
+      result = (swapMap[char] || char) + result;
     }
   }
 
-  // Add any remaining number to the result
-  if (numberBuffer) {
-    result = numberBuffer + result;
+  // Add any remaining buffer to the result
+  if (buffer) {
+    result = buffer + result;
   }
 
   return result.split("");
